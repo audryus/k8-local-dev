@@ -38,12 +38,22 @@ sudo usermod -aG docker $USER
 ```sh
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 chmod +x kubectl
-sudo mkdir -p ~/.local/bin
-sudo mv ./kubectl ~/.local/bin/kubectl
-# and add `alias k=kubectl` to bash/zsh
+mkdir -p ~/.local/bin
+mv ./kubectl ~/.local/bin/kubectl
+# add `alias k=kubectl` to bash/zsh
 cp .profile .zprofile
-# logout / login
 ```
+
+## kubectx and kubens
+```sh
+git clone https://github.com/ahmetb/kubectx /opt/kubectx
+mv kubectx/kubectx .local/bin 
+mv kubectx/kubens .local/bin
+
+# add `alias kx=kubectx` to bash/zsh
+# add `alias kn=kubens` to bash/zsh
+```
+> Logout / Login
 
 ## k3d
 ```sh
