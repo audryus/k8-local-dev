@@ -24,10 +24,17 @@ kubectl -n argo  patch deployment \
   "HTTP"
 }]'
 kubectl -n argo  apply -f cert.yaml
+kubectl -n argo  apply -f traefik-mdw-redirecttohttps.yaml
 kubectl -n argo  apply -f ingress.yaml
 
 ```
+## Argo Events
+```sh
+kubectl create namespace argo-events
+kubectl apply -n argo-events -f https://raw.githubusercontent.com/argoproj/argo-events/stable/manifests/install.yaml
+kubectl apply -n argo-events -f https://raw.githubusercontent.com/argoproj/argo-events/stable/examples/eventbus/native.yaml
 
+```
 
 
 
