@@ -5,9 +5,11 @@ kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 kubectl apply -n argocd -f cmd-params-cm.yaml
 kubectl apply -n argocd -f cert.yaml
+kubectl apply -n argocd -f traefik-mdw-redirecttohttps.yaml
 kubectl apply -n argocd -f ingress.yaml
 
-# need to restart, don't know why
+# need to restart, due to changes in cmd-params-cm.yaml
+# if changed/applied fast enough, don't really need to restart
 kubectl rollout restart deployment argocd-server -n argocd
 
 # get password
