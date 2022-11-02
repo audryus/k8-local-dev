@@ -1,5 +1,9 @@
 # Argo - CI
 
+## This way allow to open dashboard with IngressRoute
+### Bad Gateway Or Internal Server
+### So, follow the rabbit.
+
 ```sh
 kubectl create namespace argo
 kubectl apply -n argo -f https://github.com/argoproj/argo-workflows/releases/download/v3.4.3/install.yaml
