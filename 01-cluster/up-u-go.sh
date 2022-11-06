@@ -1,4 +1,4 @@
-k3d cluster create one-cluster -p "80:80@loadbalancer" -p "443:443@loadbalancer"
+k3d cluster create one-cluster -p "80:80@loadbalancer" -p "443:443@loadbalancer" --wait
 #openssl genrsa -out ca.key 4096
 #openssl req -new -x509 -sha256 -days 10950 -key ca.key -out ca.crt
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.10.0/cert-manager.yaml
