@@ -29,8 +29,8 @@ export TLS_KEY="$(cat ca.key | base64 -w 0)"
 > Install `ca.crt` on Client as Trusted ROOT
 ## Cert manager
 ```sh
-kubectl create namespace cert-manager
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.10.0/cert-manager.yaml
+kubectl wait deployment cert-manager-webhook -n cert-manager --for condition=Available=True --timeout=-1s
 envsubst < cluster-secret.yaml | kubectl apply -n cert-manager -f -
 kubectl apply -n cert-manager -f cluster-issuer.yaml
 ```
