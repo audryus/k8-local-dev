@@ -21,6 +21,13 @@ openssl req -new -x509 -sha256 -days 10950 -key ca.key -out ca.crt
 # Email Address []:me@mydomain.com
 ```
 
+## Linkerd Issuer
+```sh
+step certificate create identity.linkerd.cluster.local issuer.crt issuer.key \
+--profile intermediate-ca --not-after 8760h --no-password --insecure \
+--ca ca.crt --ca-key ca.key
+```
+
 ## cluster-secret
 ```sh
 export TLS_CRT="$(cat ca.crt | base64 -w 0)"
