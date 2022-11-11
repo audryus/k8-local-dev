@@ -2,9 +2,6 @@ echo 'Creating cluster ...'
 k3d cluster create one-cluster --api-port 6550 -p "80:80@loadbalancer" -p "443:443@loadbalancer" --agents 2
 linkerd check --pre
 linkerd install --crds | kubectl apply -f -
-linkerd install | kubectl apply -f -
-linkerd check
-linkerd viz install | kubectl apply -f -
 linkerd check
 #openssl genrsa -out ca.key 4096
 #openssl req -new -x509 -sha256 -days 10950 -key ca.key -out ca.crt

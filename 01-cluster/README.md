@@ -5,10 +5,6 @@
 k3d cluster create one-cluster -p "80:80@loadbalancer" -p "443:443@loadbalancer"
 # will make cluster available over port 80 and 443, which makes things easier
 ```
-## Linkerd
-```sh
-curl --proto '=https' --tlsv1.2 -sSfL https://run.linkerd.io/install | sh
-```
 
 ## Self signed cert
 ```sh

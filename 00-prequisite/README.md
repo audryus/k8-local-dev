@@ -66,3 +66,14 @@ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scrip
 chmod 700 get_helm.sh
 ./get_helm.sh
 ```
+
+## Linkerd
+```sh
+curl --proto '=https' --tlsv1.2 -sSfL https://run.linkerd.io/install | sh
+```
+
+## Step
+```sh
+wget https://dl.step.sm/gh-release/cli/docs-cli-install/v0.21.0/step-cli_0.21.0_amd64.deb
+sudo dpkg -i step-cli_0.21.0_amd64.deb
+```
