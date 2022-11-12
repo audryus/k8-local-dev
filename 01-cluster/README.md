@@ -28,6 +28,12 @@ step certificate create identity.linkerd.cluster.local issuer.crt issuer.key \
 --ca ca.crt --ca-key ca.key
 ```
 
+## Linkerd
+```sh
+helm install linkerd-crds linkerd/linkerd-crds -n linkerd --create-namespace --wait
+helm install linkerd-control-plane -n linkerd --set-file identityTrustAnchorsPEM=ca.crt --set-file identity.issuer.tls.crtPEM=issuer.crt --set-file identity.issuer.tls.keyPEM=issuer.key  linkerd/linkerd-control-plane --wait
+```
+
 ## cluster-secret
 ```sh
 export TLS_CRT="$(cat ca.crt | base64 -w 0)"

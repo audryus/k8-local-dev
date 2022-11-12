@@ -69,7 +69,7 @@ chmod 700 get_helm.sh
 
 ## Linkerd
 ```sh
-curl --proto '=https' --tlsv1.2 -sSfL https://run.linkerd.io/install | sh
+helm repo add linkerd https://helm.linkerd.io/stable
 ```
 
 ## Step

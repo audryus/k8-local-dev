@@ -1,8 +1,9 @@
 echo 'Creating cluster ...'
 k3d cluster create one-cluster --api-port 6550 -p "80:80@loadbalancer" -p "443:443@loadbalancer" --agents 2
-linkerd check --pre
-linkerd install --crds | kubectl apply -f -
-linkerd check
+echo 'Linkerd CRD install ...'
+helm install linkerd-crds linkerd/linkerd-crds -n linkerd --create-namespace --wait
+echo 'Linkerd install ...'
+helm install linkerd-control-plane -n linkerd --set-file identityTrustAnchorsPEM=ca.crt --set-file identity.issuer.tls.crtPEM=issuer.crt --set-file identity.issuer.tls.keyPEM=issuer.key  linkerd/linkerd-control-plane --wait
 #openssl genrsa -out ca.key 4096
 #openssl req -new -x509 -sha256 -days 10950 -key ca.key -out ca.crt
 echo 'Cert manager ...'

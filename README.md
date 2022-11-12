@@ -8,9 +8,9 @@
 - pi-hole (in host) (local dns/cname)
 - docker
 - k3d
+- helm
 
-#### Order to perform
+#### Order to execute
 - 00-*
 - 01-*
-- Whatever ...
 
