@@ -3,7 +3,7 @@
 ## Steps for my local dev env
 
 #### What I use:
-- Virtual Box
+- VMWare Player 
 - VM with Debian
 - pi-hole (in host) (local dns/cname)
 - docker
@@ -13,4 +13,4 @@
 #### Order to execute
 - 00-*
 - 01-*
-
+- 02-*

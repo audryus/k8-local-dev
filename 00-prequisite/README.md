@@ -21,7 +21,7 @@ usermod -a -G sudo $USER
 
 ```sh
 sudo apt-get update
-sudo apt-get install ca-certificates curl gnupg lsb-release vim zsh git
+sudo apt-get install ca-certificates curl gnupg lsb-release git
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
@@ -67,13 +67,3 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 ```
 
-## Linkerd
-```sh
-helm repo add linkerd https://helm.linkerd.io/stable
-```
-
-## Step
-```sh
-wget https://dl.step.sm/gh-release/cli/docs-cli-install/v0.21.0/step-cli_0.21.0_amd64.deb
-sudo dpkg -i step-cli_0.21.0_amd64.deb
-```

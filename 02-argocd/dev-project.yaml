@@ -35,7 +35,7 @@ spec:
   source:
     repoURL: https://github.com/audryus/gitops-argo.git
     targetRevision: HEAD
-    path: dev-controller
+    path: controller/overlays/dev
   destination:
     server: https://kubernetes.default.svc
     namespace: dev

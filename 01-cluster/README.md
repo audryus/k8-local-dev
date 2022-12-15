@@ -21,19 +21,6 @@ openssl req -new -x509 -sha256 -days 10950 -key ca.key -out ca.crt
 # Email Address []:me@mydomain.com
 ```
 
-## Linkerd Issuer
-```sh
-step certificate create identity.linkerd.cluster.local issuer.crt issuer.key \
---profile intermediate-ca --not-after 8760h --no-password --insecure \
---ca ca.crt --ca-key ca.key
-```
-
-## Linkerd
-```sh
-helm install linkerd-crds linkerd/linkerd-crds -n linkerd --create-namespace --wait
-helm install linkerd-control-plane -n linkerd --set-file identityTrustAnchorsPEM=ca.crt --set-file identity.issuer.tls.crtPEM=issuer.crt --set-file identity.issuer.tls.keyPEM=issuer.key  linkerd/linkerd-control-plane --wait
-```
-
 ## cluster-secret
 ```sh
 export TLS_CRT="$(cat ca.crt | base64 -w 0)"
@@ -46,12 +33,4 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 kubectl wait deployment cert-manager-webhook -n cert-manager --for condition=Available=True --timeout=-1s
 envsubst < cluster-secret.yaml | kubectl apply -n cert-manager -f -
 kubectl apply -n cert-manager -f cluster-issuer.yaml
-```
-
-## Traefik
-```sh
-kubectl create namespace traefik
-kubectl apply -n traefik -f traefik-cert.yaml
-kubectl apply -n traefik -f traefik-mdw-redirecttohttps.yaml
-kubectl apply -n traefik -f traefik-dashboard.yaml
 ```
