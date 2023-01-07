@@ -1,9 +1,9 @@
 echo 'Creating cluster ...'
-k3d cluster create one-cluster --servers 1 -p "443:443@loadbalancer" -p "80:80@loadbalancer" --k3s-arg "--disable=traefik@server:0" --k3s-arg "--disable=metrics-server@server:0" --api-port 6550
+k3d cluster create one-cluster --servers 1 -p "6379:6379@loadbalancer" -p "443:443@loadbalancer" -p "80:80@loadbalancer" --k3s-arg "--disable=traefik@server:0" --k3s-arg "--disable=metrics-server@server:0" --api-port 6550
 #openssl genrsa -out ca.key 4096
 #openssl req -new -x509 -sha256 -days 10950 -key ca.key -out ca.crt
 echo 'Installing Gateway API'
-kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v0.5.1/standard-install.yaml
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v0.6.0/experimental-install.yaml
 echo 'Cert manager ...'
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.10.0/cert-manager.yaml
 echo 'Waiting Cert manager finish install ...'
