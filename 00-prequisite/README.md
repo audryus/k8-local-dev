@@ -21,7 +21,7 @@ usermod -a -G sudo $USER
 
 ```sh
 sudo apt-get update
-sudo apt-get install ca-certificates curl gnupg lsb-release git
+sudo apt-get install ca-certificates curl gnupg lsb-release git uuid-runtime
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 

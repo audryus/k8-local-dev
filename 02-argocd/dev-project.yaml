@@ -3,12 +3,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: dev
+  name: Controller
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  description: Development project
+  description: Kubernetes Controller
   sourceRepos:
   - '*'
   destinations:
@@ -26,7 +26,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name:  developments-apps
+  name:  controller
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -35,7 +35,7 @@ spec:
   source:
     repoURL: https://github.com/audryus/gitops-argo.git
     targetRevision: HEAD
-    path: controller/overlays/dev
+    path: controller/overlays
   destination:
     server: https://kubernetes.default.svc
     namespace: dev

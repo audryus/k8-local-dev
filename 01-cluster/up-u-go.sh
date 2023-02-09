@@ -1,5 +1,6 @@
 echo 'Creating cluster ...'
-k3d cluster create one-cluster --servers 1 -p "6379:6379@loadbalancer" -p "443:443@loadbalancer" -p "80:80@loadbalancer" --k3s-arg "--disable=traefik@server:0" --k3s-arg "--disable=metrics-server@server:0" --api-port 6550
+CLUSTER_TOKEN=$(uuidgen)
+k3d cluster create one-cluster --servers 1 -p "6379:6379@loadbalancer" -p "443:443@loadbalancer" -p "80:80@loadbalancer" --k3s-arg "--disable=traefik@server:0" --k3s-arg "--disable=metrics-server@server:0" --api-port 0.0.0.0:6550 --token $CLUSTER_TOKEN
 #openssl genrsa -out ca.key 4096
 #openssl req -new -x509 -sha256 -days 10950 -key ca.key -out ca.crt
 echo 'Installing Gateway API'
@@ -13,3 +14,4 @@ export TLS_KEY="$(cat ca.key | base64 -w 0)"
 envsubst < cluster-secret.yaml | kubectl apply -n cert-manager -f -
 kubectl apply -n cert-manager -f cluster-issuer.yaml
 echo 'Finish ;-)'
+echo $CLUSTER_TOKEN
