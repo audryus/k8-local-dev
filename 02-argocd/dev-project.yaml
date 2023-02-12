@@ -3,7 +3,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: Controller
+  name: controller
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -31,7 +31,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: dev
+  project: controller
   source:
     repoURL: https://github.com/audryus/gitops-argo.git
     targetRevision: HEAD
