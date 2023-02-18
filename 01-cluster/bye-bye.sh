@@ -1,1 +1,1 @@
-k3d cluster delete one-cluster
+sudo /usr/local/bin/k3s-uninstall.sh
